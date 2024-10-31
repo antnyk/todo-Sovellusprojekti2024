@@ -1,3 +1,5 @@
+drop table if exists task;
+
 create table task (
     id serial primary key,
     description varchar(255) not null
@@ -5,3 +7,5 @@ create table task (
 
 insert into task (description) values ('My test task')
 insert into task (description) values ('Other test task')
+
+select * from task;
