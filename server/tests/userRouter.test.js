@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { initializeTestDb, insertTestUser, getToken } from "./helper/test.js";
+import { initializeTestDb, insertTestUser, getToken } from "../helper/test.js";
 
 describe("POST register", () => {
 	const email = `testmail_${Date.now()}@mail.com`;

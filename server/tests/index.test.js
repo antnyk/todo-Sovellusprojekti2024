@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { initializeTestDb, insertTestUser, getToken } from "./helper/test.js";
+import { initializeTestDb, insertTestUser, getToken } from "../helper/test.js";
 
 describe("GET Tasks", () => {
 	// runs the todo.sql file
