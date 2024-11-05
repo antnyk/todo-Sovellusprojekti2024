@@ -2,10 +2,17 @@ import { pool } from "../helper/db.js";
 import { Router } from "express";
 import { hash, compare } from "bcrypt";
 import jwt from "jsonwebtoken";
+import { postRegisteration, postLogin } from "../controllers/userController.js";
 const { sign } = jwt;
 
 const router = Router();
 
+router.post("/register", postRegisteration);
+
+router.post("/login", postLogin);
+//
+
+/*
 router.post("/register", (req, res, next) => {
 	hash(req.body.password, 10, (error, hashedPassword) => {
 		if (error) next(error); // hash error
@@ -55,5 +62,6 @@ router.post("/login", (req, res, next) => {
 		return next(error);
 	}
 });
+*/
 
 export { router };

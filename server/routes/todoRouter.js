@@ -15,7 +15,6 @@ router.get("/", getTasks);
 router.post("/create", postTask);
 
 router.delete("/delete/:id", deletetionTask);
-
 /*
 router.get("/", (req, res, next) => {
 	pool.query("select * from task", (error, result) => {

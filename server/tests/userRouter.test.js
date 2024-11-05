@@ -17,6 +17,22 @@ describe("POST register", () => {
 		expect(data).to.be.an("object");
 		expect(data).to.include.all.keys("id", "email");
 	});
+
+	const email2 = `testmail_60${Date.now()}@mail.com`;
+	const password2 = "pass";
+	it("should not post a user with less than 8 character password", async () => {
+		const response = await fetch("http://localhost:3001/user/register", {
+			method: "post",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({ email: email2, password: password2 }),
+		});
+		const data = await response.json();
+		expect(response.status).to.equal(400, data.error);
+		expect(data).to.nested.an("object");
+		expect(data).to.include.all.keys("error");
+	});
 });
 
 describe("POST login", () => {
