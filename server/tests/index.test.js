@@ -87,6 +87,8 @@ describe("DELETE task", () => {
 			},
 		});
 		const data = await response.json();
+		//console.log("Response Status:", response.status);
+		//console.log("Response Data:", data);
 		expect(response.status).to.equal(200);
 		expect(data).to.be.an("object");
 		expect(data).to.include.all.keys("id");
@@ -103,7 +105,7 @@ describe("DELETE task", () => {
 			}
 		);
 		const data = await response.json();
-		expect(response.status).to.equal(500);
+		expect(response.status).to.equal(400, data.error);
 		expect(data).to.be.an("object");
 		expect(data).to.include.all.keys("error");
 	});

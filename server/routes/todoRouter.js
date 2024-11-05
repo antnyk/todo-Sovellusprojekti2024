@@ -2,13 +2,19 @@ import { pool } from "../helper/db.js";
 import { Router } from "express";
 //import { emptyOrRows } from "../helper/utils.js";
 import { auth } from "../helper/auth.js";
-import { getTasks, postTask } from "../controllers/taskController.js";
+import {
+	getTasks,
+	postTask,
+	deletetionTask,
+} from "../controllers/taskController.js";
 
 const router = Router();
 
 router.get("/", getTasks);
 
 router.post("/create", postTask);
+
+router.delete("/delete/:id", deletetionTask);
 
 /*
 router.get("/", (req, res, next) => {
@@ -34,6 +40,7 @@ router.post("/create", auth, (req, res, next) => {
 });
 */
 
+/*
 router.delete("/delete/:id", auth, (req, res, next) => {
 	const id = parseInt(req.params.id);
 	pool.query("delete from task where id = $1", [id], (error, result) => {
@@ -43,5 +50,6 @@ router.delete("/delete/:id", auth, (req, res, next) => {
 		return res.status(200).json({ id: id });
 	});
 });
+*/
 
 export { router };

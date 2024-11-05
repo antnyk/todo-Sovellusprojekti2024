@@ -20,7 +20,7 @@ describe("POST register", () => {
 });
 
 describe("POST login", () => {
-	const email = "new@mail.com";
+	const email = `testmail_3${Date.now()}@mail.com`;
 	const password = "login1234";
 	insertTestUser(email, password);
 	it("should login with valid email and password", async () => {

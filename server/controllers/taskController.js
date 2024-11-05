@@ -1,5 +1,5 @@
 import { emptyOrRows } from "../helper/utils.js";
-import { insertTask, selectAllTasks } from "../models/task.js";
+import { insertTask, selectAllTasks, deleteTask } from "../models/task.js";
 
 const getTasks = async (req, res, next) => {
 	try {
@@ -24,18 +24,20 @@ const postTask = async (req, res, next) => {
 	}
 };
 
-const deleteTask = async (req, res, next) => {
+const deletetionTask = async (req, res, next) => {
 	try {
-		if (!req.body.id || req.body.description.id === 0) {
+		const id = parseInt(req.params.id);
+		if (isNaN(id) || id <= 0) {
 			const error = new Error("Invalid id");
 			error.statusCode = 400;
 			return next(error);
 		}
-		const result = await deleteTask(req.body.id);
-		return res.status(200).json({ id: id });
+		const result = await deleteTask(id);
+		return res.status(200).json({ id: result });
 	} catch (error) {
 		return next(error);
 	}
+
 	/*
 router.delete("/delete/:id", auth, (req, res, next) => {
 	const id = parseInt(req.params.id);
@@ -49,4 +51,4 @@ router.delete("/delete/:id", auth, (req, res, next) => {
 */
 };
 
-export { getTasks, postTask, deleteTask };
+export { getTasks, postTask, deletetionTask };
