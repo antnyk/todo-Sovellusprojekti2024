@@ -12,9 +12,9 @@ const router = Router();
 
 router.get("/", getTasks);
 
-router.post("/create", postTask);
+router.post("/create", auth, postTask);
 
-router.delete("/delete/:id", deletetionTask);
+router.delete("/delete/:id", auth, deletetionTask);
 /*
 router.get("/", (req, res, next) => {
 	pool.query("select * from task", (error, result) => {
