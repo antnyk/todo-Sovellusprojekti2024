@@ -52,7 +52,22 @@ describe("POST task", () => {
 			body: JSON.stringify({ description: null }),
 		});
 		const data = await response.json();
-		expect(response.status).to.equal(500);
+		expect(response.status).to.equal(400, data.error);
+		expect(data).to.be.an("object");
+		expect(data).to.include.all.keys("error");
+	});
+
+	it("should not post a task with zero length description", async () => {
+		const response = await fetch("http://localhost:3001/create", {
+			method: "post",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: token,
+			},
+			body: JSON.stringify({ description: "" }),
+		});
+		const data = await response.json();
+		expect(response.status).to.equal(400, data.error);
 		expect(data).to.be.an("object");
 		expect(data).to.include.all.keys("error");
 	});
@@ -72,6 +87,8 @@ describe("DELETE task", () => {
 			},
 		});
 		const data = await response.json();
+		//console.log("Response Status:", response.status);
+		//console.log("Response Data:", data);
 		expect(response.status).to.equal(200);
 		expect(data).to.be.an("object");
 		expect(data).to.include.all.keys("id");
@@ -88,7 +105,7 @@ describe("DELETE task", () => {
 			}
 		);
 		const data = await response.json();
-		expect(response.status).to.equal(500);
+		expect(response.status).to.equal(400, data.error);
 		expect(data).to.be.an("object");
 		expect(data).to.include.all.keys("error");
 	});
